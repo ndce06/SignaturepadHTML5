@@ -17,24 +17,22 @@
 		jQuery(function(){
 			//Initialize sign pad
 			init_Sign_Canvas();
-			
-			jQuery('#btnClearSign').on("click",function(){	
-				init_Sign_Canvas();
-			});
-			
-			jQuery('#btnSubmitSign').on("click",function(){	
-				if(isSign) {
-					var canvas = $("#canvas").get(0);
-					var imgData = canvas.toDataURL();
-					jQuery('#page').append(jQuery('<p>Your Sign:</p>'));
-					jQuery('#page').append($('<img/>').attr('src',imgData));
-					
-					jQuery('#divPopUpSignContract').popup('close');
-				} else {
-					alert('Please sign');
-				}
-			});
 		});
+		
+		function fun_submit() {
+			if(isSign) {
+				var canvas = $("#canvas").get(0);
+				var imgData = canvas.toDataURL();
+				jQuery('#page').find('p').remove();
+				jQuery('#page').find('img').remove();
+				jQuery('#page').append(jQuery('<p>Your Sign:</p>'));
+				jQuery('#page').append($('<img/>').attr('src',imgData));
+				
+				jQuery('#divPopUpSignContract').popup('close');
+			} else {
+				alert('Please sign');
+			}
+		}
 		
 		function init_Sign_Canvas() {
 			isSign = false;
@@ -123,8 +121,8 @@
 			<div id="div_signcontract">
 				<canvas id="canvas">Canvas is not supported</canvas>
 				<div>
-					<input id="btnSubmitSign" type="button" data-inline="true" data-mini="true" data-theme="b" value="Submit Sign" />
-					<input id="btnClearSign" type="button" data-inline="true" data-mini="true" data-theme="b" value="Clear" />
+					<input id="btnSubmitSign" type="button" data-inline="true" data-mini="true" data-theme="b" value="Submit Sign" onclick="fun_submit()" />
+					<input id="btnClearSign" type="button" data-inline="true" data-mini="true" data-theme="b" value="Clear" onclick="init_Sign_Canvas()" />
 				</div>
 			</div>	
 		</div>
