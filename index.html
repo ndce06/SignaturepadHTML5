@@ -28,10 +28,15 @@
 				jQuery('#page').append(jQuery('<p>Your Sign:</p>'));
 				jQuery('#page').append($('<img/>').attr('src',imgData));
 				
-				jQuery('#divPopUpSignContract').popup('close');
+				closePopUp();
 			} else {
 				alert('Please sign');
 			}
+		}
+		
+		function closePopUp() {
+			jQuery('#divPopUpSignContract').popup('close');
+			jQuery('#divPopUpSignContract').popup('close');
 		}
 		
 		function init_Sign_Canvas() {
@@ -114,7 +119,7 @@
 	</div>	
 	<div data-role="popup" id="divPopUpSignContract">
 		<div data-role="header" data-theme="b">
-			<a data-role="button" data-rel="back" data-transition="slide" class="ui-btn-right"> Close </a>
+			<a data-role="button" data-rel="back" data-transition="slide" class="ui-btn-right" onclick="closePopUp()"> Close </a>
 			<p class="popupHeader">Sign Pad</p>
 		</div>
 		<div class="ui-content popUpHeight">
