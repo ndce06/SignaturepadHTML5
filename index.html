@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>Signature Pad - HTML5 - jQuery Mobile</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css" />
 	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
@@ -114,23 +115,29 @@
 	</script>
 </head>
 <body>
-	<div id="page" class="ui-content">
-		<a href="#divPopUpSignContract" data-rel="popup" data-position-to="window" data-role="button" data-inline="true">Open Sign Pad</a>
+	<div data-role="page">
+		<div data-role="header">
+			<h1>Signature Pad - HTML5 - jQuery Mobile</h1>
+		</div><!-- /header -->
+		<div id="page" data-role="content">
+			<a href="#divPopUpSignContract" data-rel="popup" data-position-to="window" data-role="button" data-inline="true">Open Sign Pad</a>
+		</div>	
+		<div data-role="popup" id="divPopUpSignContract">
+			<div data-role="header" data-theme="b">
+				<a data-role="button" data-rel="back" data-transition="slide" class="ui-btn-right" onclick="closePopUp()"> Close </a>
+				<p class="popupHeader">Sign Pad</p>
+			</div>
+			<div class="ui-content popUpHeight">
+				<div id="div_signcontract">
+					<canvas id="canvas">Canvas is not supported</canvas>
+					<div>
+						<input id="btnSubmitSign" type="button" data-inline="true" data-mini="true" data-theme="b" value="Submit Sign" onclick="fun_submit()" />
+						<input id="btnClearSign" type="button" data-inline="true" data-mini="true" data-theme="b" value="Clear" onclick="init_Sign_Canvas()" />
+					</div>
+				</div>	
+			</div>
+		</div>
 	</div>	
-	<div data-role="popup" id="divPopUpSignContract">
-		<div data-role="header" data-theme="b">
-			<a data-role="button" data-rel="back" data-transition="slide" class="ui-btn-right" onclick="closePopUp()"> Close </a>
-			<p class="popupHeader">Sign Pad</p>
-		</div>
-		<div class="ui-content popUpHeight">
-			<div id="div_signcontract">
-				<canvas id="canvas">Canvas is not supported</canvas>
-				<div>
-					<input id="btnSubmitSign" type="button" data-inline="true" data-mini="true" data-theme="b" value="Submit Sign" onclick="fun_submit()" />
-					<input id="btnClearSign" type="button" data-inline="true" data-mini="true" data-theme="b" value="Clear" onclick="init_Sign_Canvas()" />
-				</div>
-			</div>	
-		</div>
-	</div>
 </body>
 </html>	
+
