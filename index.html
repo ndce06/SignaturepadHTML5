@@ -77,8 +77,8 @@
 				 canvasContext.font="20px Arial";
 				 canvasContext.fillText("x",40,155);
 			 }
-			
-			 $(canvas).on('vmousedown', function (e) {
+			 // Bind Mouse events
+			 $(canvas).on('mousedown', function (e) {
 				 if(e.which === 1) { 
 					 leftMButtonDown = true;
 					 canvasContext.fillStyle = "#000";
@@ -90,7 +90,7 @@
 				 return false;
 			 });
 			
-			 $(canvas).on('vmouseup', function (e) {
+			 $(canvas).on('mouseup', function (e) {
 				 if(leftMButtonDown && e.which === 1) {
 					 leftMButtonDown = false;
 					 isSign = true;
@@ -100,7 +100,7 @@
 			 });
 			
 			 // draw a line from the last point to this one
-			 $(canvas).bind('vmousemove', function (e) {
+			 $(canvas).on('mousemove', function (e) {
 				 if(leftMButtonDown == true) {
 					 canvasContext.fillStyle = "#000";
 					 var x = e.pageX - $(e.target).offset().left;
@@ -110,6 +110,39 @@
 				 }
 				 e.preventDefault();
 				 return false;
+			 });
+			 
+			 //bind touch events
+			 $(canvas).on('touchstart', function (e) {
+				leftMButtonDown = true;
+				canvasContext.fillStyle = "#000";
+				var t = e.originalEvent.touches[0];
+				var x = t.pageX - $(e.target).offset().left;
+				var y = t.pageY - $(e.target).offset().top;
+				canvasContext.moveTo(x, y);
+				
+				e.preventDefault();
+				return false;
+			 });
+			 
+			 $(canvas).on('touchmove', function (e) {
+				canvasContext.fillStyle = "#000";
+				var t = e.originalEvent.touches[0];
+				var x = t.pageX - $(e.target).offset().left;
+				var y = t.pageY - $(e.target).offset().top;
+				canvasContext.lineTo(x,y);
+				canvasContext.stroke();
+				
+				e.preventDefault();
+				return false;
+			 });
+			 
+			 $(canvas).on('touchend', function (e) {
+				if(leftMButtonDown) {
+					leftMButtonDown = false;
+					isSign = true;
+				}
+			 
 			 });
 		}
 	</script>
